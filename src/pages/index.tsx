@@ -10,8 +10,8 @@ import { NextPage } from 'next';
 
 const inter = Inter({ subsets: ['latin'] })
 
-const Home:NextPage = ({accounts, posts}:any) => {
-  // console.log(accounts) see GQL
+const Home:NextPage = ({landing}:any) => {
+  console.log("LANDING", landing)
   // Mixpanel - needs to be on every page, event
   // Schema <view-start-id>,<view-end-id>, <to-onboard-id>
   // console.log("mixpanel", mixpanel)
@@ -31,6 +31,7 @@ const Home:NextPage = ({accounts, posts}:any) => {
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+        <h1>{landing.title}</h1>
         <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           Get started by editing&nbsp;
           <code className="font-mono font-bold">src/pages/index.tsx</code>
@@ -71,13 +72,13 @@ const Home:NextPage = ({accounts, posts}:any) => {
           </h2>
           <h3>Blog Posts</h3>
       
-            {posts.map((post:any) => (
+            {/* {posts.map((post:any) => (
             <li key={post.slug}>
               <Link href={`/blog/${post.slug}-${post._id}`}>
                 {post.title}
               </Link>
               </li>
-              ))}
+              ))} */}
        
 
 
@@ -121,21 +122,64 @@ const Home:NextPage = ({accounts, posts}:any) => {
 }
 
 export async function getStaticProps() {
+  // Todo Update to List and get account by ID in get props, return to display
   const { data } = await client.query({
     query: gql`
     query MyQuery {
-      listPosts {
+      listLandings(filter: {accountId: {eq: "${process.env.BOBBER_ACCOUNTID}"}}) {
+        nextToken
         items {
-          slug
+          accountId
+          _id
+          brand
+          ctaLabel
+          faqs {
+            answer
+            question
+          }
+          features {
+            description
+            img
+            subtitle
+            title
+          }
+          formOnboard {
+            answer
+            question
+          }
+          header {
+            description
+            headline
+            img
+          }
+          logo
+          metaSEO {
+            description
+            keywords
+            ogImg
+            ogType
+            title
+            twitterCardDescription
+            twitterCardImg
+            twitterCardTitle
+          }
+          pricing {
+            img
+            period
+            priceUSD
+            subtitle
+            title
+          }
+          style {
+            darkMode
+            primaryColor
+            primaryFont
+            secondaryColor
+            secondaryFont
+          }
           title
-          _id
         }
-      }
-      listAccounts {
-        items {
-          label
-          _id
-        }
+      
       }
     }
     `,
@@ -144,8 +188,8 @@ export async function getStaticProps() {
   return {
  
     props: {
-      accounts: data.listAccounts.items[0],
-      posts: data.listPosts.items,
+      landing: data.listLandings.items[0],
+      // posts: data.listPosts.items,
     },
  };
 }
