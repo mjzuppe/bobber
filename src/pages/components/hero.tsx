@@ -1,6 +1,7 @@
 
 const Hero = (props: {data: {headline: String, description: String, img: String}}) => {
     const values:any = props.data;
+    if (!values) return (<div>loading...</div>);
     const { headline, description, img, ctaLabel } = values;
     console.log("data", headline);
     return (

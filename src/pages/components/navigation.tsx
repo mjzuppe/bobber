@@ -1,4 +1,5 @@
 const Nav = ({data}:any) => {
+  if (!data) return (<div>loading...</div>);
   const {brand, ctaLabel} = data;
     return ( <nav className="sticky top-0 border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">

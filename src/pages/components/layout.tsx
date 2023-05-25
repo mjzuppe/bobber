@@ -7,7 +7,7 @@ import Head from 'next/head';
 const inter = Inter({ subsets: ['latin'] });
 
 const Layout = ({children, data}:any): JSX.Element => {
-
+    if (!data) return (<div>loading...</div>);
     const { brand, seo, ctaLabel} = data;
     // const seo =  {description: "", title: "", image: ""};
     return <>
