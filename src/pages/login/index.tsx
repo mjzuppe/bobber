@@ -6,19 +6,19 @@ import Link from 'next/link';
 // Utils
 import * as mixpanel from 'mixpanel-browser';
 import { gql } from "@apollo/client";
-import client from "../../apollo-client";
+import client from "../../../apollo-client";
 
 // Components
-import Layout from "./components/layout";
-import Nav from './components/navigation';
-import Hero from './components/hero';
-import ValueProps from './components/valueprops';
-import FAQs from './components/faqs';
-import Pricing from './components/pricing';
-import Footer from './components/footer';
-import { SEO } from '../types/seo';
+import Layout from ".././components/layout";
+import Nav from '.././components/navigation';
+import Hero from '.././components/hero';
+import ValueProps from '.././components/valueprops';
+import FAQs from '.././components/faqs';
+import Pricing from '.././components/pricing';
+import Footer from '.././components/footer';
+import Auth from '.././components/auth';
 
-const Home: NextPage = ({ landing }: any) => {
+const Login: NextPage = ({ landing }: any) => {
   // Mixpanel - needs to be on every page, event
   // Schema <view-start-id>,<view-end-id>, <to-onboard-id>
   // console.log("mixpanel", mixpanel)
@@ -36,10 +36,7 @@ const Home: NextPage = ({ landing }: any) => {
 
   return (
     <Layout data={{...landing.metaSEO, brand: landing.brand, ctaLabel:landing.ctaLabel}}>
-      <Hero data={{...landing.header, ctaLabel:landing.ctaLabel}} />
-      <ValueProps data={landing.features} />
-      <FAQs data={landing.faqs}/>
-      <Pricing data={landing.pricing} />
+        <Auth />
     </Layout>
   )
 }
@@ -47,6 +44,7 @@ const Home: NextPage = ({ landing }: any) => {
 export async function getStaticProps() {
   // Todo Update to List and get account by ID in get props, return to display
   const { data } = await client.query({
+    // Todo cleanup GQL query
     query: gql`
     query MyQuery {
       listLandings(filter: {accountId: {eq: "${process.env.BOBBER_ACCOUNTID}"}}) {
@@ -116,4 +114,4 @@ export async function getStaticProps() {
   };
 }
 
-export default Home;
+export default Login;
