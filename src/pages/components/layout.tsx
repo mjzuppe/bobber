@@ -9,7 +9,6 @@ const inter = Inter({ subsets: ['latin'] });
 const Layout = ({children, data}:any): JSX.Element => {
     if (!data) return (<div>loading...</div>);
     const { brand, seo, ctaLabel} = data;
-    // const seo =  {description: "", title: "", image: ""};
     return <>
            <Head>
                 <title>{seo?.title || ""}</title>
@@ -19,6 +18,7 @@ const Layout = ({children, data}:any): JSX.Element => {
                     property="og:description"
                     content={seo?.description || ""}
                 />
+                <meta property="og:type" content="website" />
                 <meta
                     property="og:image"
                     content={seo?.image || ""}

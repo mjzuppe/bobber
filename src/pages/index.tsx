@@ -37,7 +37,7 @@ const Home: NextPage = ({ landing }: any) => {
   return (
     <Layout data={{...landing.metaSEO, brand: landing.brand, ctaLabel:landing.ctaLabel}}>
       <Hero data={{...landing.header, ctaLabel:landing.ctaLabel}} />
-      <ValueProps data={landing.features} />
+      <ValueProps data={{features: landing.features, featureSummary: landing.featureSummary}} />
       <FAQs data={landing.faqs}/>
       <Pricing data={landing.pricing} />
     </Layout>
@@ -60,6 +60,10 @@ export async function getStaticProps() {
             answer
             question
           }
+          featureSummary {
+            title
+            subtitle
+          }
           features {
             description
             img
@@ -81,9 +85,6 @@ export async function getStaticProps() {
             ogImg
             ogType
             title
-            twitterCardDescription
-            twitterCardImg
-            twitterCardTitle
           }
           pricing {
             img

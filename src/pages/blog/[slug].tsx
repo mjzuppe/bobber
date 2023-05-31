@@ -20,7 +20,6 @@ const Post: NextPage = (
 }
 
 export async function getStaticProps(props:any) {
-    console.log("props", props)
     const { slug } = props.params;
     const { data } = await client.query({
       query: gql`
