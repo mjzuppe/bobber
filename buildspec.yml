@@ -1,6 +1,6 @@
 version: 0.2
 
-run-as: ubuntu
+run-as: root
 
 # env:
 #   shell: shell-tag
@@ -29,7 +29,7 @@ batch:
         
 phases:
   install:
-    run-as: ubuntu
+    run-as: root
     on-failure: ABORT
     # runtime-versions:
     #   runtime: version
@@ -41,7 +41,7 @@ phases:
     #   - command
     #   - command
   # pre_build:
-  #   run-as: ubuntu
+  #   run-as: root
   #   on-failure: ABORT
   #   commands:
   #     - command
@@ -50,7 +50,7 @@ phases:
   #     - command
   #     - command
   # build:
-  #   run-as: ubuntu
+  #   run-as: root
   #   on-failure: ABORT
   #   commands:
   #     - command
@@ -59,7 +59,7 @@ phases:
   #     - command
   #     - command
   # post_build:
-  #   run-as: ubuntu
+  #   run-as: root
   #   on-failure: ABORT
   #   commands:
   #     - command
