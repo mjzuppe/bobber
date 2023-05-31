@@ -31,9 +31,9 @@ phases:
   install:
     run-as: ubuntu
     on-failure: ABORT
-    runtime-versions:
-      runtime: version
-      runtime: version
+    # runtime-versions:
+    #   runtime: version
+    #   runtime: version
     commands:
       - yarn
     # finally:
