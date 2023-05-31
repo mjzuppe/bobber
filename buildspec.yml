@@ -35,6 +35,7 @@ phases:
     #   runtime: version
     #   runtime: version
     commands:
+      - npm install --global yarn
       - yarn
     # finally:
     #   - command
