@@ -35,8 +35,9 @@ phases:
     #   runtime: version
     #   runtime: version
     commands:
-      - npm install --global yarn
-      - yarn
+      - npm install
+      - npm run build
+      - npm run deploy
     # finally:
     #   - command
     #   - command
