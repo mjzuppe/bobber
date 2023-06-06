@@ -7,6 +7,7 @@ const handler = async () => await s3.uploadDirectory({
     path: './out',
     params: {
       Bucket: process.env.AWS_BUCKET,
+      ACL: 'public-read',
     },
   }).then((r) => console.log('S3 Updated: ', r));
 
