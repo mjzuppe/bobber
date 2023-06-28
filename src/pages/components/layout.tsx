@@ -1,10 +1,12 @@
-import { Fahkwang, Inter } from 'next/font/google'
 import Footer from "./footer";
 import Nav from "./navigation";
 import { SEO } from "../../types/seo";
 import Head from 'next/head';
+import {templateFont, templateFontColor, templateBgColor} from "../../utils/fonts/export-for-tailwind";
 
-const inter = Inter({ subsets: ['latin'] });
+const font = templateFont();
+const font_color = templateFontColor();
+const bg_color = templateBgColor();
 
 const Layout = ({children, data}:any): JSX.Element => {
     if (!data) return (<div>loading...</div>);
@@ -24,11 +26,11 @@ const Layout = ({children, data}:any): JSX.Element => {
                     content={seo?.image || ""}
                 />
             </Head>
-            <Nav data={{brand, ctaLabel}}/>
-            <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}>
+            <Nav style={`${font.className}`} data={{brand, ctaLabel}}/>
+            <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${font.className} ${font_color} ${bg_color}`}>
                 {children}
             </main>
-            <Footer data={brand} />
+            <Footer style={`${font.className}`} data={brand} />
         </>
 };
 

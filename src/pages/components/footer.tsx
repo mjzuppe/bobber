@@ -2,7 +2,7 @@
 import Link  from "next/link";
 
 const Footer = (props:any) => {
-    return ( <footer className="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
+    return ( <footer className={`p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800 ${props.style || ""}`}>
     <div className="mx-auto max-w-screen-xl text-center">
         <ul className="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
 

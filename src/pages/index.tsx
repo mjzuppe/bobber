@@ -39,7 +39,7 @@ const Home: NextPage = ({ landing }: any) => {
       <Hero data={{...landing.header, ctaLabel:landing.ctaLabel}} />
       <ValueProps data={{features: landing.features, featureSummary: landing.featureSummary}} />
       <FAQs data={landing.faqs}/>
-      <Pricing data={landing.pricing} />
+      <Pricing data={{pricing:landing.pricing, ctaLabel:landing.ctaLabel}} />
     </Layout>
   )
 }
