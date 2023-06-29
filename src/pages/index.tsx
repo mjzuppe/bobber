@@ -15,6 +15,7 @@ import Hero from './components/hero';
 import ValueProps from './components/valueprops';
 import FAQs from './components/faqs';
 import Pricing from './components/pricing';
+import FatSections from './components/fatsections';
 import Footer from './components/footer';
 import { SEO } from '../types/seo';
 
@@ -33,11 +34,18 @@ const Home: NextPage = ({ landing }: any) => {
     });
   });
 
+  const useLargeVPs = Boolean(process.env.NEXT_PUBLIC_VALUE_PROPS_L) 
+
 
   return (
     <Layout data={{...landing.metaSEO, brand: landing.brand, ctaLabel:landing.ctaLabel}}>
       <Hero data={{...landing.header, ctaLabel:landing.ctaLabel}} />
-      <ValueProps data={{features: landing.features, featureSummary: landing.featureSummary}} />
+      {
+        useLargeVPs ?
+        <FatSections data={{features: landing.features, featureSummary: landing.featureSummary}} /> :
+        <ValueProps data={{features: landing.features, featureSummary: landing.featureSummary}} />
+      }
+
       <FAQs data={landing.faqs}/>
       <Pricing data={{pricing:landing.pricing, ctaLabel:landing.ctaLabel}} />
     </Layout>

@@ -47,8 +47,6 @@ export const templateFontColor = () => {
     return `text-${color}` || "text-white";
 }
 
-
-
 export const primaryColor = () => {
     const color = process.env.NEXT_PUBLIC_PRIMARY_COLOR;
     return color || "white";
@@ -58,5 +56,5 @@ export const templateBgColor = () => {
     const color1 = process.env.NEXT_PUBLIC_BG_COLOR;
     const color2 = process.env.NEXT_PUBLIC_BG_SECONDARY_COLOR;
     if (color2) return `bg-gradient-to-r from-${color1} to-${color2}`
-    else return `bg-${color1}` || "bg-black";
+    else return `bg-${color1}` || "bg-gray-900";
 }

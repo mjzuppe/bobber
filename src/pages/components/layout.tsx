@@ -7,6 +7,7 @@ import {templateFont, templateFontColor, templateBgColor} from "../../utils/font
 const font = templateFont();
 const font_color = templateFontColor();
 const bg_color = templateBgColor();
+console.log("BG COLOR", `flex min-h-screen flex-col items-center justify-between p-24 ${font.className} ${font_color} ${bg_color}` )
 
 const Layout = ({children, data}:any): JSX.Element => {
     if (!data) return (<div>loading...</div>);
